@@ -5,6 +5,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 import random
 
+import argparse, sys
+
+parser=argparse.ArgumentParser()
+
+parser.add_argument('--predict', help='ID of a row in the test file to use for prediction')
+
+args=parser.parse_args()
 
 def main():
     random.seed(0)
@@ -37,11 +44,16 @@ def main():
     # use your classifier to do predictions on all the test samples
     #test_result = model.test(test_data) 
 	
-    print ("========== Done classifying =======")
+    print ("========== Done classifying =======.\n")
     # Evalutate your classifier with the Accuracy function you implemented and return the necessary outputs
     accuracy, numCorrect, total_samples = model.accuracy(test_data)
     print(f"Model's Accuracy {round(accuracy*100)} %, model correctly predicted {numCorrect} out of {total_samples}")
-    print('================================================================')
+    print('================================================================.\n')
+
+    if args.predict:
+        print ("========== Print prediction at ID requested =======")
+        print("The predictedlass for the value at index",args.predict,"is: ",model.predict_with_id(int(args.predict),test_data))
+        print('================================================================')
 
 
     print ("finished.\n")

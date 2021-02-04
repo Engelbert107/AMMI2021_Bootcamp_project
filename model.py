@@ -31,9 +31,9 @@ class RuleBasedModel:
         if threshold == [0,0,0]:
             threshold = self.threshold 
         if x[self.features[0]] > threshold[0] and x[self.features[1]] > threshold[1] and x[self.features[2]] > threshold[2]:
-            return 1.
+            return 1
         else:
-            return 2.
+            return 2
 
     def train(self, data):
         """
@@ -41,9 +41,10 @@ class RuleBasedModel:
         """
         accuracy = 0
         pair = [0,0]
-        for x in space(self.threshold_ranges[0][0],self.threshold_ranges[0][1],100):
-            for y in space(self.threshold_ranges[1][0],self.threshold_ranges[1][1],100):
-                for z in space(self.threshold_ranges[2][0],self.threshold_ranges[2][1],100):
+        space_width = 60
+        for x in space(self.threshold_ranges[0][0],self.threshold_ranges[0][1],space_width):
+            for y in space(self.threshold_ranges[1][0],self.threshold_ranges[1][1],space_width):
+                for z in space(self.threshold_ranges[2][0],self.threshold_ranges[2][1],space_width):
                     temp_pair = [x,y,z]
                     temp_accuracy, a, b = self.accuracy(data,temp_pair)
                     if temp_accuracy > accuracy:
@@ -67,8 +68,8 @@ class RuleBasedModel:
         Predict for a specific ID
         """
         for x in data:
-            if id == data["ID"]:
-                return self.pred(data)
+            if int(id) == int(x["ID"]):
+                return self.pred(x)
         else:
             print("ID not found")
 
