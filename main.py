@@ -1,5 +1,4 @@
 from utils import read_data
-from utils import read_test
 from model import RuleBasedModel
 
 
