@@ -1,21 +1,23 @@
 from utils import read_data
-from model import RuleBasedModel
+#from model import RuleBasedModel
 
 
 def main():
 
-    train_file = 'path/to/train_data.txt'
-    test_file = 'path/to/test_data.txt'
+    train_file = './train_data.txt'
+    test_file = './test_data.txt'
     variables = ['ID', 'f1', 'f2', 'f3', 'f4', 'f5', 'f6', 'f7', 'f8', 'f9', 'f10', 'f11', 'class']
 
 
     print ("========= Reading train dataset =========")
-    	# TO DO:
+    train_data = read_data(train_file,train = True, variables = variables)
+    print(train_data[0])
 	# use the read data function you created to read the train data
     print ("======== Done reading =========.\n")
 
     print ("========= Reading test data =========")
-    	# TO-DO 
+    test_data = read_data(test_file,train = False, variables = variables) 
+    print(test_data[0])
 	# Read the test  data
     print ("========= Done reading =========.\n")
 
